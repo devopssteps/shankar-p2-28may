@@ -15,6 +15,13 @@ environment {
                 echo "------------buildc completed------------------"
             }
         }
+        stage("test"){
+            steps{
+                echo "-------------Start Unit test-------------------"
+                sh 'mvn surefire-report:report'
+                echo "-------------End test Compiled----------------"
+            }
+        }
         stage('SonarQube analysis') {
             environment {
                     scannerHome = tool 'SonarQubeScanner'// must match the name of an actual scanner installation directory on your Jenkins build agent
